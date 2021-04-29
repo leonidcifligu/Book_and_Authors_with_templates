@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book & Authors</title>
+
+</head>
+<body>
+    <h1>Add an Author</h1>
+    <div class="conteiner" style="display: flex; justify-content: space-around; text-align: center;">
+        
+        <form action="/add_author" method="post">
+            {% csrf_token %}
+            <h3>First Name :<input type="text" name="first_name"></h3>
+            <h3>Lirst Name :<input type="text" name="last_name"></h3>
+            <h3>Notes :<textarea name="notes" id="notes" cols="30" rows="5"></textarea></h3>
+            <button type="submit">Add</button>
+        </form>
+
+        <table class="table" style="width: 400px;">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+            {% for author in authors %}
+            <tr>
+                <td>{{author.id}}</td>
+                <td>{{author.first_name}} {{author.last_name}} </td>
+                <td><a href="/view_author/{{author.id}}">View</a></td>
+            </tr>
+            {% endfor %}
+
+
+    </div>
+</body>
+</html>
